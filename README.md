@@ -4,7 +4,7 @@
 This repository demonstrates an embedding space attack on a language model, specifically GPT-Neo 1.3B. The attack manipulates the model's response by subtly altering the input embeddings. The goal is to understand how the responses of a language model can be manipulated, providing insights into potential vulnerabilities and defense mechanisms in AI systems.
 
 ## Key Resources
-1. [Medium Article]() - Cracking the Code: How Adversarial Attacks Manipulate AI Language Models
+1. [Medium Article](https://saksheepatil05.medium.com/cracking-the-code-how-adversarial-attacks-manipulate-ai-language-models-239620395e58) - Cracking the Code: How Adversarial Attacks Manipulate AI Language Models
 
 2. [Original Paper](https://arxiv.org/abs/2310.19737) - Adversarial Attacks and Defenses in Large Language Models: Old and New Threats by Leo Schwinn, David Dobre, Stephan Günnemann, and Gauthier Gidel
 
