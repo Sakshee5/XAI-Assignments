@@ -27,7 +27,8 @@ Dataset: [Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn
 Open the notebook in Google Colab and run all cells to reproduce the results.
 
 To Import Data from Kaggle
-- Go to your account, Scroll to API section and Click Expire API Token to remove previous tokens
+- Go to your account, Scroll 
+to API section and Click Expire API Token to remove previous tokens
 - Click on Create New API Token - It will download kaggle.json file on your machine.
 - Upload kaggle.json to the folder directory
 
