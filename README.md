@@ -19,13 +19,16 @@ The dataset chosen includes the following features:
 
 ## Explanatory Techniques
 1. Partial Dependence Plots (PDP)
-PDPs show the marginal effect of one or two features on the predicted outcome. They allow us to observe how mpg changes with a particular feature while averaging out the effects of all other features.
+
+show the marginal effect of one or two features on the predicted outcome. They allow us to observe how mpg changes with a particular feature while averaging out the effects of all other features.
 
 2. Individual Conditional Expectation (ICE) Plots
-ICE plots display how predictions for individual data points change as a feature value varies.
+
+display how predictions for individual data points change as a feature value varies.
 
 3. Accumulated Local Effects (ALE) Plots
-ALE plots provide a more accurate way to visualize feature effects in the presence of correlated features. Unlike PDP, ALE does not assume independence between features and avoids the "average" problem of PDP when features are correlated.
+
+provide a more accurate way to visualize feature effects in the presence of correlated features. Unlike PDP, ALE does not assume independence between features and avoids the "average" problem of PDP when features are correlated.
 
 ## Correlation Exploration
 exploratory analysis of feature correlation is perfomed to understand how input features might interact and affect our results, focusing on the extent to which PDPs can fail in the presence of correlated features.
