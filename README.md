@@ -1,18 +1,31 @@
-# Overview
-This repository demonstrates how to use LIME (Local Interpretable Model-Agnostic Explanations) to generate local explanations for predictions made by the Inception V3 model. Inception V3 is a pre-trained deep learning model on the ImageNet dataset, primarily used for image classification tasks. (`Explainable_ML_Inception_LIME.ipynb`)
+# Global Explanations using PDP (+ local ICE) and ALE for Automobile Dataset
 
-(Optional) The original attempt involved using YOLO with LIME since LIME on object detection is a less explored topic but could not get it working. The LIME explainer ends up returning an empty `explainer` list. Will be interested in understanding the implementation if someone else is successful in doing it! (see `Not_working_YOLO_LIME.ipynb`)
+## Overview
+This repository demonstrates use of Partial Dependence Plots (PDP) (+ Individual Conditional Expectation (ICE) Plots), and Accumulated Local Effects (ALE) Plots to provide global explanations for a Random Forest Regression model. The model predicts the miles per galon for an automobile dataset, which contains data on car specifications and performance indicators. The primary goal is to explore how various features impact miles per gallon (mpg), a measure of fuel efficiency.
 
-# Strengths
-1. Explains individual predictions, which makes it easier to understand and visualize predictions.
-2. It is Model-Agnostic and can be applied to any pre-trained model.
-3. Visualization are intuitive. For example, visual explanations in the form of superpixels for images, which highlight areas of an image is super easy to understand.
+## Dataset
+The dataset chosen includes the following features:
 
-# Limitations
-1. It is computationally expensive since it perturbs the input data and evaluates the model. In this case, it took ~4.5 mins to finish a 1000 perturbations.
+- mpg: Miles per gallon (target variable)
+- cylinders: Number of engine cylinders
+- displacement: Engine displacement (size)
+- horsepower: Engine power
+- weight: Vehicle weight
+- acceleration: Time to accelerate from 0 to 60 mph
+- year: Year the car was manufactured
+- origin: Country of origin (coded as a numerical value)
+- name: Car make and model (not used in the model)
 
-2. The quality of explanations depends on how well the image is segmented into superpixels. If the segmentation is poor, the explanation might not be meaningful.
 
-# Potential Improvements
-1. Run on GPU for faster computation.
-2. Experiment with hyperparameters (for example, reducing `num_samples`) to strike a balance between performance and computation.
+## Explanatory Techniques
+1. Partial Dependence Plots (PDP)
+PDPs show the marginal effect of one or two features on the predicted outcome. They allow us to observe how mpg changes with a particular feature while averaging out the effects of all other features.
+
+2. Individual Conditional Expectation (ICE) Plots
+ICE plots display how predictions for individual data points change as a feature value varies.
+
+3. Accumulated Local Effects (ALE) Plots
+ALE plots provide a more accurate way to visualize feature effects in the presence of correlated features. Unlike PDP, ALE does not assume independence between features and avoids the "average" problem of PDP when features are correlated.
+
+## Correlation Exploration
+exploratory analysis of feature correlation is perfomed to understand how input features might interact and affect our results, focusing on the extent to which PDPs can fail in the presence of correlated features.
