@@ -1,38 +1,42 @@
-# Investigating Model Bias - ResNet50 Camel Classification
+# Assignment 8
 
-## **Aim**
-I am aiming to investigate potential bias in the ResNet50 model's interpretation of real-world scenes, especially with ditsinct environmental features. For example, here I am specifically focusing on "Arabian camel" images from the ImageNet dataset that have a distinctive "desert" background. The hypothesis examines whether the model relies more on environmental cues, such as deserts, than on the camel itself when making predictions.
-
-## **Hypothesis**
-- **H0 (Null Hypothesis)**: The ResNet50 model does not show a difference in its reliance on object-specific features compared to desert backgrounds when classifying images of "camels" in the ImageNet-V2 dataset.
-
-- **H1 (Alternative Hypothesis)**: The ResNet50 model shows a difference in its reliance on desert backgrounds compared to object-specific features when classifying images of "camels" in the ImageNet-V2 dataset, i.e., it favors sandy or barren landscapes over the camels physical attributes.
+#### Visualize the embedding space of an embedding model on the MTEB leaderboard using tSNE, PCA, and UMAP. Compare/contrast the approaches.
 
 
-## **Experimental Methods**
-- ### Saliency Maps:
-Saliency maps will be generated to visualize the pixels on which the ResNet50 model focuses when identifying camels. These maps help identify which pixels were weighted higher when making the prediction.
+## Dataset Chosen to visualize
+**Dataset Name**: GoEmotions
 
-- ### Occlusion Sensitivity:
-Here we occlude parts of the camel and the background in the images and measure the impact on the models classification confidence. By comparing occluded versions of images, we determine whether the removal of environmental features affects classification as much as removing parts of the camel itself.
+**Description**: The GoEmotions dataset consists of 58,000 Reddit comments annotated with 27 different emotion categorie.
 
-
-## Dataset
-I used three images from the ImageNet-V2 dataset, specifically from Class 354 - "Arabian Camel." The images depict camels in different environments, including:
-
-1. A semi-urban environment with palm trees and structures.
-2. A group of camels walking in a desert.
-3. A close-up view of a camels head lying on the ground.
+**Reason for Choosing**: By visualizing the embeddings derived from different models, I can analyze how well these models differentiate between various emotions and identify potential clusters that represent semantic similarities.Moreover, easy to validate and visualize wuth true labels. And lastly, it is easy to load!
 
 
-## Results
-The results from occlusion sensitivity and saliency maps suggest a slight bias in the ResNet50 models reliance on environmental cues, particularly desert landscapes, when classifying the "Arabian camel" class.
+## Embedding model chosen
 
-## Key Findings:
-1. Bias Toward Environmental Cues: When camels are in desert environments, the model often focuses on background elements (e.g., sand dunes) rather than camel-specific features.
+1. **CardiffNLP Twitter RoBERTa Base Sentiment (cardiffnlp/twitter-roberta-base-sentiment)**:
 
-2. Object-Specific Focus in Close-Ups: When the camel occupies the majority of the frame, the model relies more on object-specific features.
+**Reason for Choice**: This model is specifically fine-tuned for sentiment analysis on Twitter data. So i figured, it would be interesting to see how it performs on "emotions".  
 
-## Conclusion
-The study supports the alternative hypothesis (H1), revealing that ResNet50s classification of "Arabian camel" is influenced by the surrounding environment, particularly desert-like features. This bias indicates that the model does not always rely primarily on the camel's physical attributes for classification.
+Number of parameters: 125 million (same as RoBERTa base). <br>
+Embedding dimension: 768 dimensions (same as RoBERTa base).
+
+**MTEB Status**: roberta-base models are present on the MTEB leaderboard. I am using a specific twitter-sentiment model since it aligns with the chosen dataset.
+
+2. **NLPTown BERT Multilingual Sentiment (nlptown/bert-base-multilingual-uncased-sentiment):**
+
+**Reason for Choice**: Another sentiment-focused model that can handle multilingual input and provides sentiment scores.
+
+168 Million Parameter model with embedding dimension - 768
+
+**MTEB Status**: Number 250 on the MTEB leaderboard.
+
+3. **all-mpnet-base-v2**:
+
+**Reason for Choice**: This is general-purpose embedding model. I wanted to cluster embeddings of sentiment data on a general model so as to create a baseline for comparison against sentiment-specific models.
+
+Number of parameters: 110 million. <br>
+Embedding dimension: 768 dimensions.
+
+**MTEB Status**: Number 200 on the MTEB leaderboard.
+
 
